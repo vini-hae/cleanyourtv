@@ -67,6 +67,11 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew --no-daemon testReleaseUnitTest lintRelease assembleRelease
+      - name: Upload launcher APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: CleanYourTV-FireTV
+          path: launcher/app/build/outputs/apk/release/app-release.apk
       - name: The launcher stays small
         run: |
           size=$(stat -c %s launcher/app/build/outputs/apk/release/app-release.apk)
